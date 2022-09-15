@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class Ex7 {
 
     @Test
-    public void testLongRedirect() throws NullPointerException{
+    public void testLongRedirect(){
         String url = "https://playground.learnqa.ru/api/long_redirect";
         int responseCode = 0;
         int numberOfRedirescts = 0;
