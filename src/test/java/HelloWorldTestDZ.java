@@ -2,10 +2,10 @@ import org.junit.jupiter.api.Test;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-public class HelloWorldTestDZ {
+public class HelloWorldTest {
 
     @Test
-    public void testHelloWorldDZ(){
+    public void testHelloWorld(){
        Response response = RestAssured.
                get("https://playground.learnqa.ru/api/get_text")
                .andReturn();
