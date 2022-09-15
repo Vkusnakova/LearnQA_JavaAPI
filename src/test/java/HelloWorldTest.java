@@ -1,14 +1,21 @@
-import org.junit.jupiter.api.Test;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.Test;
 
-public class HelloWorldTestDZ {
+import java.util.HashMap;
+import java.util.Map;
+
+public class HelloWorldTest {
 
     @Test
-    public void testHelloWorldDZ(){
+    public void testRestAssured(){
+        Map<String, String> params = new HashMap<>();
+        params.put("name", "John");
        Response response = RestAssured.
-               get("https://playground.learnqa.ru/api/get_text")
+               given()
+               .queryParams(params)
+               .get("https://playground.learnqa.ru/api/hello")
                .andReturn();
-        System.out.println(response.asString());
+        response.prettyPrint();
     }
 }
