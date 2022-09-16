@@ -93,21 +93,26 @@ public class Ex9 {
             params.put("password", password);
             Response response1 = RestAssured
                     .given()
-                    .with()
-                    .queryParams(params)
+                    .body(params)
                     .post("https://playground.learnqa.ru/ajax/api/get_secret_password_homework")
                     .andReturn();
             String cookie = response1.getCookie("auth_cookie");
+
+            Map<String, String> cookies = new HashMap<>();
+            cookies.put("auth_cookie", cookie);
+
             Response response2 = RestAssured
                     .given()
-                    .with()
-                    .queryParam("auth_cookie", cookie)
+                    .body(params)
+                    .cookies(cookies)
                     .post("https://playground.learnqa.ru/ajax/api/check_auth_cookie")
                     .andReturn();
             String answer = response2.asString();
+
             if (!answer.equals("You are NOT authorized")) {
                 System.out.println(answer);
                 System.out.println(password);
+                break;
             }
         }
 
