@@ -1,7 +1,6 @@
 package lib;
 
 import io.restassured.http.Headers;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.util.Map;
