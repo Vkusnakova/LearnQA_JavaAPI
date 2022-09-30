@@ -1,5 +1,6 @@
 import io.restassured.RestAssured;
 import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,9 @@ public class Ex12 {
                 "Header with name 'x-secret-homework-header' doesn't exist");
         Assertions.assertEquals("Some secret value", headers.getValue("x-secret-homework-header"),
                 "Header is different");
+
+
+
 
     }
 
