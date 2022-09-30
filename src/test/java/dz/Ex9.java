@@ -1,3 +1,4 @@
+package dz;
 
 import io.restassured.RestAssured;
 

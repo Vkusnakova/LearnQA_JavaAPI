@@ -1,3 +1,5 @@
+package dz;
+
 import org.junit.jupiter.api.Test;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
