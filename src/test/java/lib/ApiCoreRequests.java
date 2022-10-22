@@ -2,6 +2,7 @@ package lib;
 
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
 import io.restassured.http.Header;
 import io.restassured.response.Response;
 
@@ -43,6 +44,15 @@ public class ApiCoreRequests {
         return given()
                 .filter(new AllureRestAssured())
                 .body(authData)
+                .post(url)
+                .andReturn();
+    }
+
+    @Step("Make POST-request for creating a new user")
+    public Response makePostRequestNewUser(String url, Map<String, String> userData){
+        return given()
+                .filter(new AllureRestAssured())
+                .body(userData)
                 .post(url)
                 .andReturn();
     }

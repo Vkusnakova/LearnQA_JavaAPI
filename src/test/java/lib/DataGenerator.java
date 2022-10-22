@@ -33,4 +33,17 @@ public class DataGenerator {
         }
         return userData;
     }
+    public static Map<String, String> getRegistrationDataWithOutOneParameter(String missingParameter){
+        Map<String, String> userData = new HashMap<>();
+        Map<String, String> defaultValues = DataGenerator.getRegistrationData();
+        String[] keys = {"email", "password", "username", "firstName", "lastName"};
+        for (String  key: keys) {
+            if(missingParameter.equals(key)){
+                userData.remove(key);
+            } else {
+                userData.put(key, defaultValues.get(key));
+            }
+        }
+        return userData;
+    }
 }
