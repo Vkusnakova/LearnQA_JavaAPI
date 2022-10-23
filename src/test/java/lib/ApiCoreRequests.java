@@ -2,7 +2,6 @@ package lib;
 
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
-import io.restassured.RestAssured;
 import io.restassured.http.Header;
 import io.restassured.response.Response;
 
@@ -40,7 +39,7 @@ public class ApiCoreRequests {
     }
 
     @Step("Make POST-request with token and auth cookie")
-    public Response makePostRequest(String url, Map<String, String> authData){
+    public Response makePostRequestForAuth(String url, Map<String, String> authData){
         return given()
                 .filter(new AllureRestAssured())
                 .body(authData)
@@ -54,6 +53,16 @@ public class ApiCoreRequests {
                 .filter(new AllureRestAssured())
                 .body(userData)
                 .post(url)
+                .andReturn();
+    }
+
+    @Step
+    public Response makeGetRequestForUserData(String url, String token, String cookie, int userId){
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .get(url+userId)
                 .andReturn();
     }
 }
