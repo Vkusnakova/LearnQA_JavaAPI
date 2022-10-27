@@ -64,8 +64,9 @@ public class UserGetTest extends BaseTestCase {
 
         Map<String, String> userData = DataGenerator.getRegistrationData();
         Response responseCreateNewUser = apiCoreRequests
-                .makePostRequestNewUser("https://playground.learnqa.ru/api/user", userData);
-        int userId = this.getIntFromJson(responseCreateNewUser, "id");
+                .makePostRequest("https://playground.learnqa.ru/api/user", userData);
+        String userId = this.getStringFromJson(responseCreateNewUser, "id");
+
 
         Response responseGetUserData = apiCoreRequests
                 .makeGetRequestForUserData("https://playground.learnqa.ru/api/user/", header, cookie, userId);

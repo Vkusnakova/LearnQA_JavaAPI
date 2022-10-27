@@ -47,8 +47,8 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-    @Step("Make POST-request for creating a new user")
-    public Response makePostRequestNewUser(String url, Map<String, String> userData){
+    @Step("Make POST-request")
+    public Response makePostRequest(String url, Map<String, String> userData){
         return given()
                 .filter(new AllureRestAssured())
                 .body(userData)
@@ -56,13 +56,40 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-    @Step
-    public Response makeGetRequestForUserData(String url, String token, String cookie, int userId){
+    @Step("Make GET Request for user data")
+    public Response makeGetRequestForUserData(String url, String token, String cookie, String userId){
         return given()
                 .filter(new AllureRestAssured())
                 .header(new Header("x-csrf-token", token))
                 .cookie("auth_sid", cookie)
                 .get(url+userId)
+                .andReturn();
+    }
+    @Step("Make GET Request for user data w/o token and cookie")
+    public Response makeGetRequestForUserData(String url, String userId){
+        return given()
+                .filter(new AllureRestAssured())
+                .get(url+userId)
+                .andReturn();
+    }
+
+    @Step("Make PUT-request with token and auth cookie")
+    public Response makePutRequest(String url, String token, String cookie, Map<String,String> editData, String userId){
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .body(editData)
+                .put(url+userId)
+                .andReturn();
+    }
+
+    @Step("Make PUT-request without token and auth cookie")
+    public Response makePutRequest(String url,Map<String,String> editData, String userId){
+        return given()
+                .filter(new AllureRestAssured())
+                .body(editData)
+                .put(url+userId)
                 .andReturn();
     }
 }
