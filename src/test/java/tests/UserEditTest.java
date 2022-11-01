@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Link;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -16,6 +17,7 @@ import java.util.Map;
 public class UserEditTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
+    @Link("https://playground.learnqa.ru/api/map")
     @Test
     public void testEditJustCreatedTest() {
         //Generate User

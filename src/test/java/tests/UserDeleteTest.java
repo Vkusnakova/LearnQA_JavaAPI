@@ -1,5 +1,8 @@
 package tests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -18,6 +21,7 @@ public class UserDeleteTest extends BaseTestCase {
     ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @DisplayName("This test checks that it is impossible do delete user with id = 2")
+    @Story("User should be deleted by itself")
     @Test
     public void testDeleteUserID2() {
         //login
@@ -39,7 +43,9 @@ public class UserDeleteTest extends BaseTestCase {
         Assertions.assertResponseCodeEquals(responseGetUser, 200);
     }
 
+
     @DisplayName("This test checks delete user")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeleteUser(){
        //Generate user
